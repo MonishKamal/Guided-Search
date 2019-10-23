@@ -16,7 +16,7 @@ def heuristic(a, b):
 	# BEGIN HERE #
 	# Manhattan distance is chosen here as heuristic.
 
-	return abs(b[0]-a[0])+abs(b[1]-a[1])
+	return abs(b[1]-a[1])+ abs(b[0]-a[0])
 
 	# END HERE #
 
@@ -26,10 +26,12 @@ def searchHillClimbing(graph, start, goal):
 	Perform hill climbing search on the graph.
 
 	Find the path from start to goal.
-
-	@graph: The graph to search on.
+	
+	
 	@start: Start state.
 	@goal: Goal state.
+	@graph: The graph to search on.
+	
 
 	returns: A dictionary which has the information of the path taken.
 			 Ex. if your path contains and edge from A to B, then in
@@ -95,9 +97,10 @@ def searchBestFirst(graph, start, goal):
 
 	Find the path from start to goal.
 
+	
+	@goal: Goal state.
 	@graph: The graph to search on.
 	@start: Start state.
-	@goal: Goal state.
 
 	returns: A dictionary which has the information of the path taken.
 			 Ex. if your path contains and edge from A to B, then in
@@ -118,9 +121,10 @@ def searchBestFirst(graph, start, goal):
 	# When initial state itself is the goal state
 	if start == goal:
 		return came_from
+	
+	temporary_heap = []
 	parent_states = dict()
 	visited_states = dict()
-	temporary_heap = list()
 	current_state = None
 
 	temporary_heap.append((heuristic(start, goal), start))
@@ -178,7 +182,7 @@ def searchBeam(graph, start, goal, beam_length=3):
 	"""
 
 	# Initialise the came_from dictionary
-	came_from = {}
+	came_from = dict()
 	came_from[start] = None
 
 	# BEGIN HERE #
